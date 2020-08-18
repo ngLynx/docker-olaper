@@ -1,0 +1,21 @@
+version: '2'
+services:
+  olaper_www:
+    image: stdatatech/olaper
+    ports:
+      - 8180:8080
+  saiku_www:
+    image: loumaris/saiku
+    ports:
+      - 8080:8080
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: foodmart
+      MYSQL_DATABASE: foodmart
+      MYSQL_USER: foodmart
+      MYSQL_PASSWORD: foodmart
+  data_setup:
+    build: ./data_setup
+    links:
+      - db
